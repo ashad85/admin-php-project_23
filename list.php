@@ -19,6 +19,16 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <div class="container mb-3">
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Add Category</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Lorem ipsum, dolor sit amet consectetur adipisicing.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
     <!-- Main content -->
     <!-- Main content -->
     <section class="content">
@@ -28,9 +38,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title m-1">Add more Category </h3>
-                            <div class="card-tools">
-                                <a class="btn btn-primary" href="#" role="button">Add Category</a>
-                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
