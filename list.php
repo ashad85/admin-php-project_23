@@ -40,8 +40,8 @@
                             <h3 class="card-title m-1">Add more Category </h3>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                        <div class="table-responsive p-2">
+                            <table id="example1" class="table table-bordered table-striped ">
                                 <thead>
                                     <tr>
                                         <th>Rendering engine</th>
