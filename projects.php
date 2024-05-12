@@ -39,18 +39,19 @@
                           #
                       </th>
                       <th style="width: 20%">
-                          Project Name
+                          Theme id
                       </th>
                       <th style="width: 30%">
-                          Team Members
+                          Theme Name
                       </th>
                       <th>
-                          Project Progress
+                          Theme Category 
                       </th>
                       <th style="width: 8%" class="text-center">
-                          Status
+                          Theme status
                       </th>
                       <th style="width: 20%">
+                      Theme Link And Theme Screen Shot
                       </th>
                   </tr>
               </thead>
@@ -70,24 +71,14 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar2.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar3.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar4.png">
-                              </li>
+                                  
+                                    
+                                  
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-                              </div>
+                          
                           </div>
                           <small>
                               57% Complete
@@ -108,9 +99,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -129,18 +120,12 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar2.png">
-                              </li>
+                                  
+                                    
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="47" aria-valuemin="0" aria-valuemax="100" style="width: 47%">
-                              </div>
+                          
                           </div>
                           <small>
                               47% Complete
@@ -161,9 +146,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -182,22 +167,13 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar2.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar3.png">
-                              </li>
+                                  
+                                    
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
-                              </div>
-                          </div>
+                          
                           <small>
                               77% Complete
                           </small>
@@ -217,9 +193,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -238,25 +214,14 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar2.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar3.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar4.png">
-                              </li>
+                               
+                                    
+                                  
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                              </div>
-                          </div>
+                          
                           <small>
                               60% Complete
                           </small>
@@ -276,9 +241,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -297,22 +262,13 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar4.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar5.png">
-                              </li>
+                               
+                                  
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%">
-                              </div>
-                          </div>
+                          
                           <small>
                               12% Complete
                           </small>
@@ -332,9 +288,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -353,24 +309,14 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar2.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar3.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar4.png">
-                              </li>
+                                  
+                              
+                                  
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
-                              </div>
+                          
                           </div>
                           <small>
                               35% Complete
@@ -391,9 +337,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -412,18 +358,12 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar4.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar5.png">
-                              </li>
+                                  
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
-                              </div>
+                          
                           </div>
                           <small>
                               87% Complete
@@ -444,9 +384,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -465,21 +405,13 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar3.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar4.png">
-                              </li>
+                                  
+                                  
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
-                              </div>
+                         
                           </div>
                           <small>
                               77% Complete
@@ -500,9 +432,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
@@ -521,24 +453,14 @@
                       </td>
                       <td>
                           <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar3.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar4.png">
-                              </li>
-                              <li class="list-inline-item">
-                                  <img alt="Avatar" class="table-avatar" src="dist/img/avatar5.png">
-                              </li>
+                                  
+                                  
+                                  
+                                  
                           </ul>
                       </td>
                       <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
-                              </div>
+                          
                           </div>
                           <small>
                               77% Complete
@@ -559,9 +481,9 @@
                               Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
+                              <i   >
                               </i>
-                              Delete
+                              preview  
                           </a>
                       </td>
                   </tr>
