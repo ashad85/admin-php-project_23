@@ -46,11 +46,8 @@
 <script src="dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
-
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- FLOT CHARTS -->
@@ -61,11 +58,6 @@
 <script src="plugins/flot/plugins/jquery.flot.pie.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<!-- Page specific script -->
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

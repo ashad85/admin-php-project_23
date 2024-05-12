@@ -48,7 +48,7 @@
                 <p>Total Themes</p>
               </div>
               <div class="icon">
-                <i  class="ion bi bi-file-code"></i>
+                <i style="font-size: 50px;" class="ion bi bi-file-code"></i>
               </div>
               <a href="projects.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
