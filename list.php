@@ -44,11 +44,11 @@
                             <table id="example1" class="table table-bordered table-striped ">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>Category Id</th>
+                                        <th>Category Name</th>
+                                        <th>Category Keywords</th>
+                                        <th>Category Discription</th>
+                                        <th>Themes Ids in the Category</th>
                                     </tr>
                                 </thead>
                                 <tbody>
