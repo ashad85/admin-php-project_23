@@ -1,4 +1,4 @@
-<?php include_once('baise/head.php'); ?>
+<?php include_once('base/head.php'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -74,4 +74,4 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php include_once('baise/foot.php'); ?>
+<?php include_once('base/foot.php'); ?>
