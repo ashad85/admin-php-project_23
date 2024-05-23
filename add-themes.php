@@ -1,4 +1,42 @@
 <?php include_once('base/head.php'); ?>
+<?php
+$insert = false;
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "admin_project";
+
+$conn = mysqli_connect($server, $username, $password, $database);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_errno());
+}
+
+if (isset($_POST['theme_name'])) {
+    $category_id = $_POST['category_id'];
+    $theme_name = $_POST['theme_name'];
+    $description = $_POST['description'];
+    $url = $_POST['url'];
+    $image = null;
+
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+        $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+    }
+
+    // Corrected SQL INSERT statement
+    $sql = "INSERT INTO `theme` (`category_id`, `theme_name`, `description`, `image`, `url`, `created_at`) 
+            VALUES ('$category_id', '$theme_name', '$description', '$image', '$url', current_timestamp())";
+
+    if (mysqli_query($conn, $sql)) {
+        $insert = true;
+        header("Location: {$_SERVER['PHP_SELF']}");
+        exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+}
+?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -31,7 +69,14 @@
             <label for="inputStatus">Which Category</label>
             <select id="inputStatus" class="form-control custom-select" name="category_id" required>
               <option selected disabled>Select one</option>
-              
+              <?php
+                    $result = $conn->query("SELECT * FROM category");
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['id']}'>{$row['Category']}</option>";
+                        }
+                    }
+                    ?>
             </select>
           </div>
           <div class="form-group">
