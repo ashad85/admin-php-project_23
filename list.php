@@ -13,6 +13,20 @@ if (!$conn) {
     die("not connect" . mysqli_connect_errno());
 }
 
+
+// Handle delete request
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $delete_sql = "DELETE FROM `category` WHERE `id` = $delete_id";
+    if (mysqli_query($conn, $delete_sql)) {
+        header("Location: http://localhost/admin/list.php"); // Redirect to the list page after deletion
+        exit();
+    } else {
+        echo "Error deleting record: " . mysqli_error($conn);
+    }
+}
+
+
 if (isset($_POST['category'])) {
     $category = $_POST['category'];
 
@@ -76,37 +90,34 @@ if (isset($_POST['category'])) {
                                         <th>Category Id</th>
                                         <th>Category Name</th>
                                         <th>Date and Time</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     
                                         <?php
                                             $result = $conn->query("SELECT * FROM category");
+                                            $counter = 1;
 
                                             if ($result->num_rows > 0) {
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo "<tr>";
-                                                    echo "<td>" . $row['id'] . "</td>";
+                                                    echo "<td>" . $counter++ . "</td>";
                                                     echo "<td>" . $row['Category'] . "</td>";
                                                     echo "<td>" . $row['datetime'] . "</td>";
+                                                    echo "<td class='project-actions text-right'>
+                                                            <a class='btn btn-danger btn-sm' href='list.php?delete_id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
+                                                                <i class='fas fa-trash'></i> Delete
+                                                            </a>
+                                                        </td>";
                                                     echo "</tr>";
                                                 }
-                                                echo "</table>";
                                             } else {
                                                 echo "No categories found.";
                                             }
                                         
                                         ?>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                         <!-- /.card-body -->

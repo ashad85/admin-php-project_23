@@ -27,7 +27,10 @@ $conn = mysqli_connect($server, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_errno());
 }
+
 ?>
+
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -60,15 +63,15 @@ if (!$conn) {
                     <a class="btn btn-primary" href="add-themes.php" role="button">Add Themes</a>
                 </div>
             </div>
-            <div class="card-body p-0">
-                <table class="table table-striped projects">
+            <div class="table-responsive p-2">
+                <table id="example2" class="table  table-striped">
                     <thead>
                     
                         <tr>
                             <th style="width: 0.5%;">
                                 #
                             </th>
-                            <th style="width: 12%">
+                            <th style="width: 11%">
                                 Category Name
                             </th>
                             <th style="width: 14%">
@@ -83,8 +86,8 @@ if (!$conn) {
                             <th style="width: 10%">
                                 Themes url
                             </th>
-                            <th style="width: 10%">
-                                <input class="form-control w-100" id="searchInput" type="text" placeholder="Search...">
+                            <th style="width: 15%">
+                                <input class="form-control" id="searchInput" type="text" placeholder="Search...">
                             </th>
 
                         </tr>
@@ -114,11 +117,6 @@ if (!$conn) {
                                     echo "<td>" . $row['url'] . "</td>";
                                     //echo "<td>" . $row['created_at'] . "</td>";
                                     echo "<td class='project-actions text-right'>
-                                            <a class='btn btn-primary btn-sm' href='#'>
-                                                <i class='fas fa-folder'>
-                                                </i>
-                                                View
-                                            </a>
                                             <a class='btn btn-info btn-sm' href='add-themes.php'>
                                                 <i class='fas fa-pencil-alt'>
                                                 </i>
