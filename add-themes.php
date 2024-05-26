@@ -30,7 +30,7 @@ if (isset($_POST['theme_name'])) {
 
     if (mysqli_query($conn, $sql)) {
         $insert = true;
-        header("Location: {$_SERVER['PHP_SELF']}");
+        header("Location: projects.php");
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);

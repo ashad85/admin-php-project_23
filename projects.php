@@ -1,4 +1,30 @@
-<?php include_once('base/head.php'); ?>
+<?php
+ob_start(); // Start output buffering
+include_once('base/head.php'); // Include head file
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "admin_project";
+
+$conn = mysqli_connect($server, $username, $password, $database);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_errno());
+}
+
+// Delete category
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $delete_sql = "DELETE FROM `theme` WHERE `id` = $delete_id";
+    if (mysqli_query($conn, $delete_sql)) {
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        echo "Error deleting record: " . mysqli_error($conn);
+    }
+}
+?>
 <style>
     img {
             max-width: 100px;
@@ -14,23 +40,6 @@
             text-overflow: ellipsis;
         }
 </style>
-<?php
-$insert = false;
-
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "admin_project";
-
-$conn = mysqli_connect($server, $username, $password, $database);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_errno());
-}
-
-?>
-
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -117,12 +126,9 @@ if (!$conn) {
                                     echo "<td>" . $row['url'] . "</td>";
                                     //echo "<td>" . $row['created_at'] . "</td>";
                                     echo "<td class='project-actions text-right'>
-                                            <a class='btn btn-info btn-sm' href='add-themes.php'>
-                                                <i class='fas fa-pencil-alt'>
-                                                </i>
-                                                Edit
+                                            <a class='btn btn-danger btn-sm' href='projects.php?delete_id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
+                                                <i class='fas fa-trash'></i> Delete
                                             </a>
-                
                                         </td>";
                                     echo "</tr>";
                                 }
@@ -156,4 +162,6 @@ if (!$conn) {
         });
     });
 </script>
-<?php include_once('base/foot.php'); ?>
+<?php include_once('base/foot.php'); 
+ob_end_flush(); // End output buffering and flush output
+?>

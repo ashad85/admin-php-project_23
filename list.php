@@ -1,7 +1,9 @@
-<?php include_once('base/head.php'); ?>
+<?php include_once('base/head.php');?>
 <?php
-$insert = false;
+ob_start(); // Start output buffering
+include_once('base/head.php');
 
+// Database connection
 $server = "localhost";
 $username = "root";
 $password = "";
@@ -10,38 +12,48 @@ $database = "admin_project";
 $conn = mysqli_connect($server, $username, $password, $database);
 
 if (!$conn) {
-    die("not connect" . mysqli_connect_errno());
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-
-// Handle delete request
-if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
-    $delete_sql = "DELETE FROM `category` WHERE `id` = $delete_id";
-    if (mysqli_query($conn, $delete_sql)) {
-        header("Location: http://localhost/admin/list.php"); // Redirect to the list page after deletion
-        exit();
-    } else {
-        echo "Error deleting record: " . mysqli_error($conn);
-    }
-}
-
-
+// Insert category
 if (isset($_POST['category'])) {
     $category = $_POST['category'];
 
-    // Corrected SQL INSERT statement
     $sql = "INSERT INTO `category` (`Category`, `datetime`) VALUES ('$category', current_timestamp())";
 
     if (mysqli_query($conn, $sql)) {
-        $insert = true;
-        header("Location: {$_SERVER['PHP_SELF']}");
+        header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
+
+// Delete category
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $delete_sql = "DELETE FROM `category` WHERE `id` = $delete_id";
+    if (mysqli_query($conn, $delete_sql)) {
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        echo "Error deleting record: " . mysqli_error($conn);
+    }
+}
 ?>
+
+<!-- HTML Content -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -59,20 +71,20 @@ if (isset($_POST['category'])) {
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
     <div class="container mb-3">
         <form method="post">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Add Category</label>
-                <input type="text" class="form-control" name="category" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Lorem ipsum, dolor sit amet consectetur adipisicing.</div>
+                <label for="category" class="form-label">Add Category</label>
+                <input type="text" class="form-control" name="category" id="category" aria-describedby="categoryHelp" required>
+                <div id="categoryHelp" class="form-text">Lorem ipsum, dolor sit amet consectetur adipisicing.</div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <!-- Main content -->
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -80,56 +92,77 @@ if (isset($_POST['category'])) {
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title m-1">Add more Category </h3>
+                            <h3 class="card-title m-1">Add more Category</h3>
                         </div>
-                        <!-- /.card-header -->
                         <div class="table-responsive p-2">
-                            <table id="example1" class="table table-bordered table-striped ">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Category Id</th>
-                                        <th>Category Name</th>
-                                        <th>Date and Time</th>
-                                        <th></th>
+                                        <th style="width: 10%">Serial No.</th>
+                                        <th  style="width: 30%">Category Name</th>
+                                        <th style="width: 30%">Date and Time</th>
+                                        <th style="width: 15%">Total Themes</th>
+                                        <th style="width: 10%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                        <?php
-                                            $result = $conn->query("SELECT * FROM category");
-                                            $counter = 1;
+                                    <?php
+                                    $sql = "
+                                        SELECT 
+                                            c.id, 
+                                            c.Category, 
+                                            c.datetime, 
+                                            COUNT(t.id) AS theme_count
+                                        FROM 
+                                            category c
+                                        LEFT JOIN 
+                                            theme t 
+                                        ON 
+                                            c.id = t.category_id
+                                        GROUP BY 
+                                            c.id, 
+                                            c.Category, 
+                                            c.datetime
+                                    ";
+                                    $result = $conn->query($sql);
 
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo "<tr>";
-                                                    echo "<td>" . $counter++ . "</td>";
-                                                    echo "<td>" . $row['Category'] . "</td>";
-                                                    echo "<td>" . $row['datetime'] . "</td>";
-                                                    echo "<td class='project-actions text-right'>
-                                                            <a class='btn btn-danger btn-sm' href='list.php?delete_id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
-                                                                <i class='fas fa-trash'></i> Delete
-                                                            </a>
-                                                        </td>";
-                                                    echo "</tr>";
-                                                }
-                                            } else {
-                                                echo "No categories found.";
-                                            }
-                                        
-                                        ?>
+                                    if ($result->num_rows > 0) {
+                                        $counter = 1;
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<tr>";
+                                            echo "<td>" . $counter++ . "</td>";
+                                            echo "<td>" . $row['Category'] . "</td>";
+                                            echo "<td>" . $row['datetime'] . "</td>";
+                                            echo "<td>" . $row['theme_count'] . "</td>";
+                                            echo "<td class='project-actions text-right'>
+                                                    <a class='btn btn-danger btn-sm' href='list.php?delete_id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
+                                                        <i class='fas fa-trash'></i> Delete
+                                                    </a>
+                                                </td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "No categories found.";
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </section>
+</div>
+</div>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="dist/js/adminlte.js"></script>
+</body>
+</html>
 
+<?php
+ob_end_flush(); // Flush the output buffer
+?>
 
-    <?php include_once('base/foot.php'); ?>
+<?php include_once('base/foot.php'); ?>

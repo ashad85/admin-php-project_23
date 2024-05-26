@@ -1,7 +1,6 @@
-<?php include_once('base/head.php'); ?>
-
 <?php
-$insert = false;
+ob_start(); // Start output buffering
+include_once('base/head.php'); // Include head file
 
 $server = "localhost";
 $username = "root";
@@ -14,53 +13,17 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_errno());
 }
 
-// Handle delete request
+// Delete category
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
-    $delete_sql = "DELETE FROM `category` WHERE `id` = $delete_id";
+    $delete_sql = "DELETE FROM `theme` WHERE `id` = $delete_id";
     if (mysqli_query($conn, $delete_sql)) {
-        header("Location: demo.php"); // Redirect to the list page after deletion
+        header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
     }
 }
-
-// Handle insert request
-if (isset($_POST['category'])) {
-    $category = $_POST['category'];
-
-    // Corrected SQL INSERT statement
-    $sql = "INSERT INTO `category` (`Category`, `datetime`) VALUES ('$category', current_timestamp())";
-
-    if (mysqli_query($conn, $sql)) {
-        $insert = true;
-        header("Location: {$_SERVER['PHP_SELF']}");
-        exit();
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-}
-
-// Pagination logic
-$limit = 10; // Number of entries to show per page
-if (isset($_GET["page"])) {
-    $page = $_GET["page"];
-} else {
-    $page = 1;
-}
-$start_from = ($page - 1) * $limit;
-
-// Fetching data with limit
-$sql = "SELECT * FROM category LIMIT $start_from, $limit";
-$rs_result = $conn->query($sql);
-
-// Getting the total number of records
-$sql_total = "SELECT COUNT(id) FROM category";
-$rs_total = $conn->query($sql_total);
-$row_total = $rs_total->fetch_row();
-$total_records = $row_total[0];
-$total_pages = ceil($total_records / $limit);
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -70,83 +33,100 @@ $total_pages = ceil($total_records / $limit);
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Category</h1>
+                    <h1>Themes</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">List Category</li>
+                        <li class="breadcrumb-item active">List Themes</li>
                     </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
 
-    <div class="container mb-3">
-        <form method="post">
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Add Category</label>
-                <input type="text" class="form-control" name="category" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Lorem ipsum, dolor sit amet consectetur adipisicing.</div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-
     <!-- Main content -->
     <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title m-1">Add more Category </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="table-responsive p-2">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Category Id</th>
-                                        <th>Category Name</th>
-                                        <th>Date and Time</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $counter = $start_from + 1; // Initialize counter
-                                    if ($rs_result->num_rows > 0) {
-                                        while ($row = $rs_result->fetch_assoc()) {
-                                            echo "<tr>";
-                                            echo "<td>" . $counter++ . "</td>";
-                                            echo "<td>" . $row['Category'] . "</td>";
-                                            echo "<td>" . $row['datetime'] . "</td>";
-                                            echo "<td class='project-actions text-right'>
-                                                    <a class='btn btn-danger btn-sm' href='demo.php?delete_id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
-                                                        <i class='fas fa-trash'></i> Delete
-                                                    </a>
-                                                  </td>";
-                                            echo "</tr>";
-                                        }
-                                    } else {
-                                        echo "<tr><td colspan='4'>No categories found.</td></tr>";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Lorem ipsum dolor sit amet.</h3>
+
+                <div class="card-tools">
+                    <a class="btn btn-primary" href="add-themes.php" role="button">Add Themes</a>
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
+            <div class="table-responsive p-2">
+                <table id="example2" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Category Name</th>
+                            <th>Themes Name</th>
+                            <th>Description</th>
+                            <th>Themes Image</th>
+                            <th>Themes URL</th>
+                            <th>
+                                <input class="form-control" id="searchInput" type="text" placeholder="Search...">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <?php
+                            $result = $conn->query("SELECT theme.*, category.Category FROM theme JOIN category ON theme.category_id = category.id");
+                            $counter = 1;
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $counter++ . "</td>";
+                                    echo "<td>" . $row['Category'] . "</td>";
+                                    echo "<td>" . $row['theme_name'] . "</td>";
+                                    echo "<td>" . $row['description'] . "</td>";
+                                    echo "<td>";
+                                    if ($row['image']) {
+                                        echo "<img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' />";
+                                    } else {
+                                        echo "No image";
+                                    }
+                                    echo "</td>";
+                                    echo "<td>" . $row['url'] . "</td>";
+                                    echo "<td class='project-actions text-right'>
+                                            <a class='btn btn-danger btn-sm' href='demo.php?delete_id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
+                                                <i class='fas fa-trash'></i> Delete
+                                            </a>
+                                          </td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "No themes found.";
+                            }
+
+                            $conn->close();
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.card -->
     </section>
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-<?php include_once('base/foot.php'); ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#searchInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#tableBody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<?php 
+include_once('base/foot.php'); 
+ob_end_flush(); // End output buffering and flush output
+?>
