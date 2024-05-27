@@ -1,4 +1,26 @@
-<?php include_once('base/head.php');?>
+<?php include_once('base/head.php');
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "admin_project";
+
+$conn = mysqli_connect($server, $username, $password, $database);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_errno());
+}
+
+// Fetch the total number of categories
+$category_result = $conn->query("SELECT COUNT(*) AS total_categories FROM category");
+$category_data = $category_result->fetch_assoc();
+$total_categories = $category_data['total_categories'];
+
+// Fetch the total number of themes
+$theme_result = $conn->query("SELECT COUNT(*) AS total_themes FROM theme");
+$theme_data = $theme_result->fetch_assoc();
+$total_themes = $theme_data['total_themes'];
+
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -28,7 +50,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><?php echo $total_categories; ?></h3>
 
                 <p>Total Categories</p>
               </div>
@@ -43,7 +65,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3><?php echo $total_themes; ?></h3>
 
                 <p>Total Themes</p>
               </div>
