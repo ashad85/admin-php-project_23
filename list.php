@@ -1,6 +1,8 @@
-<?php include_once('base/head.php');?>
-<?php
+<?php 
 ob_start(); // Start output buffering
+include_once('base/head.php');
+?>
+<?php
 include_once('base/head.php');
 
 // Database connection
@@ -42,18 +44,6 @@ if (isset($_GET['delete_id'])) {
 }
 ?>
 
-<!-- HTML Content -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -155,14 +145,8 @@ if (isset($_GET['delete_id'])) {
     </section>
 </div>
 </div>
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="dist/js/adminlte.js"></script>
-</body>
-</html>
 
-<?php
+
+<?php include_once('base/foot.php'); 
 ob_end_flush(); // Flush the output buffer
 ?>
-
-<?php include_once('base/foot.php'); ?>
