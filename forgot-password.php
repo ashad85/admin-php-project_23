@@ -39,7 +39,7 @@
         </div>
       </form>
       <p class="mt-3 mb-1">
-        <a href="login.html">Login</a>
+        <a href="log.php">Login</a>
       </p>
     </div>
     <!-- /.login-card-body -->
