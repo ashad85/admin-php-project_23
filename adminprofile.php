@@ -12,7 +12,7 @@
             <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
             <div class="d-flex justify-content-center mb-2">
-              <a href="adminedit.php"><button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary w-50">Edit</button></a>
+              <a href="adminedit.php"><button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary w-100">Edit</button></a>
             </div>
           </div>
         </div>
